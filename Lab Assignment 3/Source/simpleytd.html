@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+  <head>
+  <title>Search</title>
+  </head>
+  <body>
+    <div id="buttons">
+    <label> <input id="query" value='cats' type="text"/><button id="search-button"    onclick="keyWordsearch()">Search</button></label> </div> 
+    <div id="container">
+    <h1>Search Results</h1>
+    <ul id="results"></ul>
+    </div>
+
+    <span title="English"><a href="query.value" translate="no" lang="en">English</a></span>
+<script>
+ function keyWordsearch(){
+    gapi.client.setApiKey('AIzaSyDOy2PtOb96C2Gbe_w7fCtc4KNKDEPZBSI');
+    gapi.client.load('youtube', 'v3', function(){
+            makeRequest();
+    });
+}
+function makeRequest(){
+    var q = $('#query').val();
+    var request = gapi.client.youtube.search.list({
+            q: q,
+            part: 'snippet', 
+            maxResults: 10
+    });
+    request.execute(function(response)  {                                                                                    
+            $('#results').empty()
+            var srchItems = response.result.items;                      
+            $.each(srchItems, function(index, item){
+            vidTitle = item.snippet.title;  
+            vidThumburl =  item.snippet.thumbnails.default.url;                 
+            vidThumbimg = '<pre><img id="thumb" src="'+vidThumburl+'" alt="No  Image  Available." style="width:204px;height:128px"></pre>';                   
+
+            $('#results').append('<pre>' + vidTitle + vidThumbimg +   '</pre>');                      
+    })  
+  })
+}
+ </script> 
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady">   </script>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: "Helvetica Neue", Helvetica, sans-serif;
+            color: #444;
+            -webkit-font-smoothing: antialiased;
+            background-size: 1300px 800px;
+            background-repeat: no-repeat;
+            background-image: url(image.jpg);
+            background-size: 1500px 1250px;
+        }
+        input[type=text]{
+            color: #777;
+            padding-left: 10px;
+            margin: 10px;
+            margin-top: 12px;
+            margin-left: 18px;
+            width: 290px;
+            height: 35px;
+            border: 1px solid #c7d0d2;
+            border-radius: 2px;
+            box-shadow: inset 0 1.5px 3px rgba(190, 190, 190, .4), 0 0 0 5px #f5f7f8;
+            -webkit-transition: all .4s ease;
+            -moz-transition: all .4s ease;
+            transition: all .4s ease;
+        }
+        #lower {
+            background: #ecf2f5;
+            width: 100%;
+            height: 69px;
+            margin-top: 20px;
+            box-shadow: inset 0 1px 1px #fff;
+            border-top: 1px solid #ccc;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        input[type=submit] {
+
+            margin-right: 20px;
+            margin-top: 20px;
+            width: 80px;
+            height: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #acd6ef;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#acd6ef), to(#6ec2e8));
+            border-radius: 30px;
+            border: 1px solid #66add6;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .5);
+            cursor: pointer;
+        }
+
+            input[type=button]
+
+            {
+                margin-right: 20px;
+                margin-top: 20px;
+                width: 100px;
+                height: 80px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                background-color: #acd6ef;
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#acd6ef), to(#6ec2e8));
+                border-radius: 30px;
+                border: 1px solid #66add6;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .5);
+                cursor: pointer;
+            }
+
+    </style>
+
+
+
+</body>
+</html>
