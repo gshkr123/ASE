@@ -24,3 +24,7 @@ https://github.com/gshkr123/ASE/wiki/Lab-Assignment-6
 Below is the wiki link for Lab assignment 7
 
 https://github.com/gshkr123/ASE/wiki/Lab-Assignment-7
+
+Below is the wiki link for Lab assignment 8
+
+https://github.com/gshkr123/ASE/wiki/Lab-Assignment-8
